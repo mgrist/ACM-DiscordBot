@@ -1,0 +1,22 @@
+{
+  "name": "acm-discordbot",
+  "version": "1.0.0",
+  "description": "Discord role bot for the ACM Student Chapter at ASU",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mgrist/ACM-DiscordBot.git"
+  },
+  "author": "Matthew Grist",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mgrist/ACM-DiscordBot/issues"
+  },
+  "homepage": "https://github.com/mgrist/ACM-DiscordBot#readme",
+  "dependencies": {
+    "discord.js": "^13.7.0"
+  }
+}
