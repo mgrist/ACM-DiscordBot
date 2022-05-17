@@ -43,9 +43,21 @@ client.on("messageReactionAdd", async (reaction, user) => {
 	let message = reaction.message;
 	let emoji = reaction.emoji;
 
-	if(emoji.name == '👍')
+	if(emoji.name == '😀')
 	{
 		console.log('success');
+
+		message.guild.members.fetch(user.id).then(member => {
+			member.roles.add('975920858067533855');
+		});
+	}
+	if(emoji.name == '🤓')
+	{
+		console.log('success');
+
+		message.guild.members.fetch(user.id).then(member => {
+			member.roles.add('975920858067533855');
+		});
 	}
 });
 
