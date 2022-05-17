@@ -43,8 +43,19 @@ client.on("messageReactionAdd", async (reaction, user) => {
 	let message = reaction.message;
 	let emoji = reaction.emoji;
 
-	if (emoji.name == "👍") {
-		console.log("success");
+	if (emoji.name == "😀") {
+		console.log("student");
+
+		message.guild.members.fetch(user.id).then((member) => {
+			member.roles.add("975920815545659432");
+		});
+	}
+	if (emoji.name == "🤓") {
+		console.log("tutor");
+
+		message.guild.members.fetch(user.id).then((member) => {
+			member.roles.add("975921305759137823");
+		});
 	}
 });
 
