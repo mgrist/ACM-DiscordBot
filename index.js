@@ -5,7 +5,12 @@ const { token } = require("./config.json");
 
 // Create a new client instance
 const client = new Client({
-	intents: [Intents.FLAGS.GUILDS, "GUILDS", "GUILD_MESSAGES"],
+	intents: [
+		Intents.FLAGS.GUILDS,
+		"GUILDS",
+		"GUILD_MESSAGES",
+		"DIRECT_MESSAGES",
+	],
 });
 
 // Text channel ID that role commands will be issued in
@@ -26,10 +31,10 @@ client.once("ready", (c) => {
 });
 
 // When client sends a message, do something
-client.on("messageCreate", async (message) => {
+client.on("messageReactionAdd", async (message) => {
+	// if message reaction is in the role channel
 	if (message.channelId === roleChannel) {
 		if (message.content === "!hello") {
-			console.log(await message.guild.channels.fetch());
 		}
 	}
 });
