@@ -10,11 +10,12 @@ const client = new Client({
 		"GUILDS",
 		"GUILD_MESSAGES",
 		"DIRECT_MESSAGES",
+		"GUILD_MESSAGE_REACTIONS"
 	],
 });
 
 // Text channel ID that role commands will be issued in
-const roleChannel = "975972573164761108";
+const roleChannel = "976249794982993920";
 
 // ID number for each role in the server.
 const president_role = "975921199743901716";
@@ -26,17 +27,18 @@ const tutor_role = "975921305759137823";
 const student_role = "975920815545659432";
 
 // When the client is ready, run this code (only once)
-client.once("ready", (c) => {
+client.once("ready", async (c) => {
 	console.log(`Ready! Logged in as ${c.user.tag}`);
+	const channel = client.channels.cache.get(roleChannel);
+	channel.send('test');
+	const message = await interaction.fetchReply({ content: 'test', fetchReply: true });
+	message.react('976258444057247775').then(() => message.react('976258444057247775'));
 });
 
 // When client sends a message, do something
-client.on("messageReactionAdd", async (message) => {
+client.on("messageReactionAdd", async (reaction, user) => {
 	// if message reaction is in the role channel
-	if (message.channelId === roleChannel) {
-		if (message.content === "!hello") {
-		}
-	}
+	console.log('hi mom');
 });
 
 // Login to Discord with your client's token
