@@ -31,14 +31,22 @@ client.once("ready", async (c) => {
 	console.log(`Ready! Logged in as ${c.user.tag}`);
 	const channel = client.channels.cache.get(roleChannel);
 	channel.send('test');
-	const message = await interaction.fetchReply({ content: 'test', fetchReply: true });
-	message.react('976258444057247775').then(() => message.react('976258444057247775'));
+	// const message = await interaction.fetchReply({ content: 'test', fetchReply: true });
+	// message.react('976258444057247775').then(() => message.react('976258444057247775'));
 });
 
 // When client sends a message, do something
 client.on("messageReactionAdd", async (reaction, user) => {
 	// if message reaction is in the role channel
 	console.log('hi mom');
+
+	let message = reaction.message;
+	let emoji = reaction.emoji;
+
+	if(emoji.name == '👍')
+	{
+		console.log('success');
+	}
 });
 
 // Login to Discord with your client's token
