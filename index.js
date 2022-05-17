@@ -10,7 +10,7 @@ const client = new Client({
 		"GUILDS",
 		"GUILD_MESSAGES",
 		"DIRECT_MESSAGES",
-		"GUILD_MESSAGE_REACTIONS"
+		"GUILD_MESSAGE_REACTIONS",
 	],
 });
 
@@ -30,22 +30,21 @@ const student_role = "975920815545659432";
 client.once("ready", async (c) => {
 	console.log(`Ready! Logged in as ${c.user.tag}`);
 	const channel = client.channels.cache.get(roleChannel);
-	channel.send('test');
-	// const message = await interaction.fetchReply({ content: 'test', fetchReply: true });
-	// message.react('976258444057247775').then(() => message.react('976258444057247775'));
+	channel.send(
+		"React to give yourself a role:\n\n😀: `Student`\n🤓: `Tutor`\n"
+	);
 });
 
 // When client sends a message, do something
 client.on("messageReactionAdd", async (reaction, user) => {
 	// if message reaction is in the role channel
-	console.log('hi mom');
+	console.log("hi mom");
 
 	let message = reaction.message;
 	let emoji = reaction.emoji;
 
-	if(emoji.name == '👍')
-	{
-		console.log('success');
+	if (emoji.name == "👍") {
+		console.log("success");
 	}
 });
 
