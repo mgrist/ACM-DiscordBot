@@ -28,33 +28,65 @@ const student_role = "975920815545659432";
 
 // When the client is ready, run this code (only once)
 client.once("ready", async (c) => {
+	//Successful logon
 	console.log(`Ready! Logged in as ${c.user.tag}`);
+
+	//Store channel and send role message to it
 	const channel = client.channels.cache.get(roleChannel);
+
+	channel.bulkDelete(100);
+
 	channel.send(
-		"React to give yourself a role:\n\n😀: `Student`\n🤓: `Tutor`\n"
+		"__**React to give yourself a role:**__\n\n💻: `Student`\n\n👨‍🏫: `Tutor`\n"
 	);
 });
 
-// When client sends a message, do something
-client.on("messageReactionAdd", async (reaction, user) => {
-	// if message reaction is in the role channel
-	console.log("hi mom");
+// When bot sends message, react to it's message with certain emojis
+client.on('messageCreate', message => {
+    if (message.channel.id === `976249794982993920`) {
+        message.react('💻');
+		message.react('👨‍🏫');
+    }
+});
 
+// When client reacts to bot message, assign role
+client.on("messageReactionAdd", async (reaction, user) => {
+
+	//Storing message and emoji for reference
 	let message = reaction.message;
 	let emoji = reaction.emoji;
 
-	if (emoji.name == "😀") {
-		console.log("student");
-
+	//Checking for reacted emojis, and assigning roles accordingly
+	if (emoji.name == "💻") {
 		message.guild.members.fetch(user.id).then((member) => {
 			member.roles.add("975920815545659432");
 		});
 	}
-	if (emoji.name == "🤓") {
-		console.log("tutor");
-
+	if (emoji.name == "👨‍🏫") {
 		message.guild.members.fetch(user.id).then((member) => {
 			member.roles.add("975921305759137823");
+		});
+	}
+});
+
+// When client removes reaction to bot message, unassign role
+client.on("messageReactionRemove", async (reaction, user) => {
+
+	//Storing message and emoji for reference
+	let message = reaction.message;
+	let emoji = reaction.emoji;
+
+	//Checking for removed reacted emojis, and unassigning accordingly
+	if(emoji.name == "💻")
+	{
+		message.guild.members.fetch(user.id).then((member) => {
+			member.roles.remove("975920815545659432");
+		});
+	}
+	if(emoji.name == "👨‍🏫")
+	{
+		message.guild.members.fetch(user.id).then((member) => {
+			member.roles.remove("975921305759137823");
 		});
 	}
 });
