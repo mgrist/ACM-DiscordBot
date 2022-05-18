@@ -117,7 +117,7 @@ client.once("ready", async (c) => {
 // When bot sends message, react to it's message with certain emojis
 client.on("messageCreate", (message) => {
 
-	if ((message.channel.id === roleChannel) && (message.id == parseInt(messagesFinal[0]))) {
+	if ((message.channel.id === roleChannel) && (message.id == messagesFinal[0])) {
 		message.react(studentEmoji);
 		message.react(tutorEmoji);
 	}
