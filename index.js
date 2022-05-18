@@ -42,26 +42,27 @@ client.once("ready", async (c) => {
 });
 
 // When bot sends message, react to it's message with certain emojis
-client.on('messageCreate', message => {
-    if (message.channel.id === `976249794982993920`) {
-        message.react('💻');
-		message.react('👨‍🏫');
-    }
+client.on("messageCreate", (message) => {
+	if (message.channel.id === `976249794982993920`) {
+		message.react("💻");
+		message.react("👨‍🏫");
+	}
 });
 
 // When client reacts to bot message, assign role
 client.on("messageReactionAdd", async (reaction, user) => {
-
 	//Storing message and emoji for reference
 	let message = reaction.message;
 	let emoji = reaction.emoji;
 
 	//Checking for reacted emojis, and assigning roles accordingly
+	//💻 represents students
 	if (emoji.name == "💻") {
 		message.guild.members.fetch(user.id).then((member) => {
 			member.roles.add("975920815545659432");
 		});
 	}
+	//💻 represents students
 	if (emoji.name == "👨‍🏫") {
 		message.guild.members.fetch(user.id).then((member) => {
 			member.roles.add("975921305759137823");
@@ -71,20 +72,19 @@ client.on("messageReactionAdd", async (reaction, user) => {
 
 // When client removes reaction to bot message, unassign role
 client.on("messageReactionRemove", async (reaction, user) => {
-
 	//Storing message and emoji for reference
 	let message = reaction.message;
 	let emoji = reaction.emoji;
 
 	//Checking for removed reacted emojis, and unassigning accordingly
-	if(emoji.name == "💻")
-	{
+	//💻 represents students
+	if (emoji.name == "💻") {
 		message.guild.members.fetch(user.id).then((member) => {
 			member.roles.remove("975920815545659432");
 		});
 	}
-	if(emoji.name == "👨‍🏫")
-	{
+	// 👨‍🏫 represents tutors
+	if (emoji.name == "👨‍🏫") {
 		message.guild.members.fetch(user.id).then((member) => {
 			member.roles.remove("975921305759137823");
 		});
