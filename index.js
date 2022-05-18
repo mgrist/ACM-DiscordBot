@@ -28,6 +28,24 @@ const student_roleID = "975920815545659432";
 
 const studentEmoji = "💻";
 const tutorEmoji = "👨‍🏫";
+const facultyEmoji = "🍎";
+const alumniEmoji = "🎓";
+// education status
+const graduateEmoji = "📚";
+const freshmanEmoji = "1️⃣";
+const sophomoreEmoji = "2️⃣";
+const juniorEmoji = "3️⃣";
+const seniorEmoji = "4️⃣";
+// pronouns
+const himEmoji = "🧡";
+const herEmoji = "💜";
+const theyEmoji = "💚";
+const otherEmoji = "❤️";
+// interests
+const programmingEmoji = "👩‍💻";
+const gamedevEmoji = "🕹";
+const itEmoji = "🌐";
+const cyberEmoji = "🔒";
 
 // When the client is ready, run this code (only once)
 client.once("ready", async (c) => {
@@ -41,7 +59,7 @@ client.once("ready", async (c) => {
 	channel.bulkDelete(100);
 
 	channel.send(
-		"__**React to give yourself a role:**__\n\n" +
+		"__**React to give yourself a role(s):**__\n\n" +
 			studentEmoji +
 			": `Student`\n\n" +
 			tutorEmoji +
