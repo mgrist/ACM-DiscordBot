@@ -14,8 +14,6 @@ const client = new Client({
 	],
 });
 
-let messagesFinal = [];
-
 // Text channel ID that role commands will be issued in
 const roleChannel = "976249794982993920";
 
@@ -28,26 +26,39 @@ const member_roleID = "975920537073225789";
 const tutor_roleID = "975921305759137823";
 const student_roleID = "975920815545659432";
 
+//enrollment status
 const studentEmoji = "💻";
-const tutorEmoji = "👨‍🏫";
 const facultyEmoji = "🍎";
 const alumniEmoji = "🎓";
+const guestEmoji = "👨‍🎤";
 // education status
 const freshmanEmoji = "1️⃣";
 const sophomoreEmoji = "2️⃣";
 const juniorEmoji = "3️⃣";
 const seniorEmoji = "4️⃣";
-const graduateEmoji = "📚";
+const graduateEmoji = "5️⃣";
 // pronouns
 const himEmoji = "🧡";
 const herEmoji = "💜";
 const theyEmoji = "💚";
 const otherEmoji = "❤️";
 // interests
-const programmingEmoji = "👩‍💻";
-const gamedevEmoji = "🕹";
-const itEmoji = "🌐";
-const cyberEmoji = "🔒";
+const gamedevEmoji = "🎮";
+const backendEmoji = "🍺";
+const dataEmoji = "📊";
+const devOpsEmoji = "🃏";
+const redEmoji = "☢️";
+const blueEmoji = "🪤";
+const networkEmoji = "📡";
+const aiEmoji = "🤖";
+const cloudEmoji = "🌧";
+const threedEmoji = "🗿";
+const graphicEmoji = "🎨";
+const seEmoji = "🚿";
+const serverEmoji = "🔥";
+const frontendEmoji = "🦚";
+const embedEmoji = "🤢";
+const forensicEmoji = "🕵️‍♀️";
 
 // When the client is ready, run this code (only once)
 client.once("ready", async (c) => {
@@ -60,112 +71,160 @@ client.once("ready", async (c) => {
 	// Deletes 100 previous messages
 	channel.bulkDelete(100);
 
-	channel.send(
-		"__**React to give yourself roles:**__\n\n" +
-			"__Enrollment Status__\n\n" +
-			studentEmoji +
-			": `Student`\n\n" +
-			tutorEmoji +
-			": `Tutor`\n\n" +
-			facultyEmoji +
-			": `Faculty`\n\n" +
-			alumniEmoji +
-			": `Alumni`\n\n"
-	);
-	channel.send(
-			"__Seniority__\n\n" +
-			freshmanEmoji +
-			": `Freshman`\n\n"+ 
-			sophomoreEmoji +
-			": `Sophomore`\n\n" +
-			juniorEmoji +
-			": `Junior`\n\n" +
-			seniorEmoji +
-			": `Senior`\n\n" +
-			graduateEmoji +
-			": `Graduate School`\n\n"
-	);
-	channel.send(
-			"__Pronouns__\n" +
-			himEmoji +
-			": `He/Him`\n\n" +
-			herEmoji +
-			": `She/Her`\n\n" +
-			theyEmoji +
-			": `They/Them`\n\n" +
-			otherEmoji +
-			": `Other`\n\n" 
-	);
-	channel.send(
-			"__Interests__\n\n" +
-			programmingEmoji +
-			": `Programming`\n\n" +
-			gamedevEmoji +
-			": `Game Dev`\n\n" +
-			itEmoji +
-			": `IT`\n\n" +
-			cyberEmoji +
-			": `CyberSec`\n\n"
-	);
+	channel
+		.send(
+			"__**React to give yourself roles:**__\n\n" +
+				"__Enrollment Status__\n" +
+				studentEmoji +
+				": `Student`\n\n" +
+				facultyEmoji +
+				": `Faculty`\n\n" +
+				alumniEmoji +
+				": `Alumni`\n\n" +
+				guestEmoji +
+				": `Guest`\n\n"
+		)
+		.then((sent) => {
+			sent.react(studentEmoji);
+			sent.react(facultyEmoji);
+			sent.react(alumniEmoji);
+			sent.react(guestEmoji);
+		});
 
-	channel.messages.fetch({ limit: 100 }).then(messages => {
-		//Iterate through the messages here with the variable "messages".
-		messages.forEach(message => messagesFinal.push(message.id))
-	});
-});
+	channel
+		.send(
+			"__Seniority__\n" +
+				freshmanEmoji +
+				": `Freshman`\n\n" +
+				sophomoreEmoji +
+				": `Sophomore`\n\n" +
+				juniorEmoji +
+				": `Junior`\n\n" +
+				seniorEmoji +
+				": `Senior`\n\n" +
+				graduateEmoji +
+				": `Graduate School`\n\n"
+		)
+		.then((sent) => {
+			sent.react(freshmanEmoji);
+			sent.react(sophomoreEmoji);
+			sent.react(juniorEmoji);
+			sent.react(seniorEmoji);
+			sent.react(graduateEmoji);
+		});
 
-// When bot sends message, react to it's message with certain emojis
-client.on("messageCreate", (message) => {
+	channel
+		.send(
+			"\n\n__Pronouns__\n" +
+				himEmoji +
+				": `He/Him`\n\n" +
+				herEmoji +
+				": `She/Her`\n\n" +
+				theyEmoji +
+				": `They/Them`\n\n" +
+				otherEmoji +
+				": `Other`\n\n"
+		)
+		.then((sent) => {
+			sent.react(himEmoji);
+			sent.react(herEmoji);
+			sent.react(theyEmoji);
+			sent.react(otherEmoji);
+		});
 
-	if ((message.channel.id === roleChannel) && (message.id == messagesFinal[0])) {
-		message.react(studentEmoji);
-		message.react(tutorEmoji);
-	}
-
+	channel
+		.send(
+			"__Interests__\n" +
+				gamedevEmoji +
+				": `Game Dev`\n\n" +
+				frontendEmoji +
+				": `Frontend Dev`\n\n" +
+				backendEmoji +
+				": `Backend Dev`\n\n" +
+				dataEmoji +
+				": `Data Science`\n\n" +
+				devOpsEmoji +
+				": `Dev Ops`\n\n" +
+				redEmoji +
+				": `Red Team`\n\n" +
+				blueEmoji +
+				": `Blue Team`\n\n" +
+				networkEmoji +
+				": `Networking`\n\n" +
+				aiEmoji +
+				": `Artificial Intelligence`\n\n" +
+				cloudEmoji +
+				": `Cloud Computing`\n\n" +
+				threedEmoji +
+				": `3d Modeling`\n\n" +
+				graphicEmoji +
+				": `Graphic Design`\n\n" +
+				seEmoji +
+				": `Software Engineer`\n\n" +
+				serverEmoji +
+				": `Server Administrator`\n\n" +
+				embedEmoji +
+				": `Embedded Development`\n\n" +
+				forensicEmoji +
+				": `Forensic Analysis`\n\n"
+		)
+		.then((sent) => {
+			sent.react(freshmanEmoji);
+			sent.react(frontendEmoji);
+			sent.react(backendEmoji);
+			sent.react(dataEmoji);
+			sent.react(devOpsEmoji);
+			sent.react(redEmoji);
+			sent.react(blueEmoji);
+			sent.react(networkEmoji);
+			sent.react(aiEmoji);
+			sent.react(cloudEmoji);
+			sent.react(threedEmoji);
+			sent.react(graphicEmoji);
+			sent.react(seEmoji);
+			sent.react(serverEmoji);
+			sent.react(embedEmoji);
+			sent.react(forensicEmoji);
+		});
 });
 
 // When client reacts to bot message, assign role
 client.on("messageReactionAdd", async (reaction, user) => {
+	// If an acutal user is reacting, not a bot.
+	if (!user.bot && reaction.message.channelId == roleChannel) {
+		//Storing message and emoji for reference
+		let message = reaction.message;
+		let emoji = reaction.emoji;
 
-	//Storing message and emoji for reference
-	let message = reaction.message;
-	let emoji = reaction.emoji;
-
-	//Checking for reacted emojis, and assigning roles accordingly
-	switch (emoji.name) {
-		case studentEmoji:
-			message.guild.members.fetch(user.id).then((member) => {
-				member.roles.add(student_roleID);
-			});
-			break;
-		case tutorEmoji:
-			message.guild.members.fetch(user.id).then((member) => {
-				member.roles.add(tutor_roleID);
-			});
-			break;
+		//Checking for reacted emojis, and assigning roles accordingly
+		switch (emoji.name) {
+			case studentEmoji:
+				message.guild.members.fetch(user.id).then((member) => {
+					member.roles.add(student_roleID);
+				});
+				break;
+		}
 	}
 });
 
 // When client removes reaction to bot message, unassign role
 client.on("messageReactionRemove", async (reaction, user) => {
-	//Storing message and emoji for reference
-	let message = reaction.message;
-	let emoji = reaction.emoji;
+	// If an acutal user is reacting, not a bot.
+	if (!user.bot && reaction.message.channelId == roleChannel) {
+		//Storing message and emoji for reference
+		let message = reaction.message;
+		let emoji = reaction.emoji;
 
-	//Checking for removed reacted emojis, and unassigning accordingly
-	switch (emoji.name) {
-		case studentEmoji:
-			message.guild.members.fetch(user.id).then((member) => {
-				member.roles.remove(student_roleID);
-			});
-			break;
-		case tutorEmoji:
-			message.guild.members.fetch(user.id).then((member) => {
-				member.roles.remove(tutor_roleID);
-			});
-			break;
-		default:
-			break;
+		//Checking for removed reacted emojis, and unassigning accordingly
+		switch (emoji.name) {
+			case studentEmoji:
+				message.guild.members.fetch(user.id).then((member) => {
+					member.roles.remove(student_roleID);
+				});
+				break;
+			default:
+				break;
+		}
 	}
 });
 
