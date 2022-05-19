@@ -98,7 +98,7 @@ client.once("ready", async (c) => {
 	channel
 		.send(
 			"__**React to give yourself roles:**__\n\n" +
-				"__Enrollment Status__\n" +
+				"__Enrollment Status__\n\n" +
 				studentEmoji +
 				": `Student`\n\n" +
 				facultyEmoji +
@@ -117,7 +117,7 @@ client.once("ready", async (c) => {
 
 	channel
 		.send(
-			"__Seniority__\n" +
+			"__Seniority__\n\n" +
 				freshmanEmoji +
 				": `Freshman`\n\n" +
 				sophomoreEmoji +
@@ -127,7 +127,7 @@ client.once("ready", async (c) => {
 				seniorEmoji +
 				": `Senior`\n\n" +
 				graduateEmoji +
-				": `Graduate School`\n\n"
+				": `Graduate Student`\n\n"
 		)
 		.then((sent) => {
 			sent.react(freshmanEmoji);
@@ -139,7 +139,7 @@ client.once("ready", async (c) => {
 
 	channel
 		.send(
-			"\n\n__Pronouns__\n" +
+			"\n\n__Pronouns__\n\n" +
 				himEmoji +
 				": `He/Him`\n\n" +
 				herEmoji +
@@ -158,7 +158,7 @@ client.once("ready", async (c) => {
 
 	channel
 		.send(
-			"__Interests__\n" +
+			"__Interests__\n\n" +
 				gamedevEmoji +
 				": `Game Dev`\n\n" +
 				frontendEmoji +
@@ -168,11 +168,11 @@ client.once("ready", async (c) => {
 				dataEmoji +
 				": `Data Science`\n\n" +
 				devOpsEmoji +
-				": `Dev Ops`\n\n" +
+				": `DevOps`\n\n" +
 				redEmoji +
-				": `Red Team`\n\n" +
+				": `CyberSec - Red Team`\n\n" +
 				blueEmoji +
-				": `Blue Team`\n\n" +
+				": `CyberSec - Blue Team`\n\n" +
 				networkEmoji +
 				": `Networking`\n\n" +
 				aiEmoji +
@@ -180,17 +180,17 @@ client.once("ready", async (c) => {
 				cloudEmoji +
 				": `Cloud Computing`\n\n" +
 				threedEmoji +
-				": `3d Modeling`\n\n" +
+				": `3D Modeling`\n\n" +
 				graphicEmoji +
 				": `Graphic Design`\n\n" +
 				seEmoji +
-				": `Software Engineer`\n\n" +
+				": `Software Engineering`\n\n" +
 				serverEmoji +
-				": `Server Administrator`\n\n" +
+				": `Server Administration`\n\n" +
 				embedEmoji +
 				": `Embedded Development`\n\n" +
 				forensicEmoji +
-				": `Forensic Analysis`\n\n"
+				": `Computer Forensics`\n\n"
 		)
 		.then((sent) => {
 			sent.react(gamedevEmoji);
