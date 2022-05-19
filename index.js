@@ -96,9 +96,37 @@ const embedEmoji = "🤢";
 const forensicEmoji = "🕵️‍♀️";
 
 //Trying to create a map to make the role setting easier and much smaller
-const rolesMap = {
-	studentEmoji: "975920815545659432"
-};
+const rolesMap = new Map([
+	[studentEmoji, "975920815545659432"],
+	[facultyEmoji, "976860263150153778"],
+	[alumniEmoji, "976860671037833236"],
+	[guestEmoji, "976860704592265236"],
+	[freshmanEmoji, "976860744496865301"],
+	[sophomoreEmoji, "976860936788922388"],
+	[juniorEmoji, "976860965020790865"],
+	[seniorEmoji, "976860987602907167"],
+	[graduateEmoji, "976861005978173521"],
+	[himEmoji, "976861030095413248"],
+	[herEmoji, "976861081387540551"],
+	[theyEmoji, "976861102623305738"],
+	[otherEmoji, "976861155081486336"],
+	[gamedevEmoji, "976861323625377842"],
+	[frontendEmoji, "976861323667333170"],
+	[backendEmoji, "976861486339199107"],
+	[dataEmoji, "976861513526706196"],
+	[devOpsEmoji, "976861542047940638"],
+	[redEmoji, "976861574620925953"],
+	[blueEmoji, "976861663443693568"],
+	[networkEmoji, "976861699921559582"],
+	[aiEmoji, "976861736269410314"],
+	[cloudEmoji, "976861783207837766"],
+	[threedEmoji, "976861824228130927"],
+	[graphicEmoji, "976861855500869722"],
+	[seEmoji, "976861896437276743"],
+	[serverEmoji, "976861932495704154"],
+	[embedEmoji, "976861966947741696"],
+	[forensicEmoji, "976862011952623726"]
+]);
 
 // When the client is ready, run this code (only once)
 client.once("ready", async (c) => {
@@ -248,156 +276,9 @@ client.on("messageReactionAdd", async (reaction, user) => {
 		let message = reaction.message;
 		let emoji = reaction.emoji;
 
-		//We need to refactor all of this. We can possibly use a map to automatically grab the id for whatever emoji is read into the line above
-		//Checking for reacted emojis, and assigning roles accordingly
-		//Gross switch statements
-		switch (emoji.name) {
-			case studentEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(student_roleID);
-				});
-				break;
-			case facultyEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(faculty_roleID);
-				});
-				break;
-			case alumniEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(alumni_roleID);
-				});
-				break;
-			case guestEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(guest_roleID);
-				});
-				break;
-			case freshmanEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(freshman_roleID);
-				});
-				break;
-			case sophomoreEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(sophomore_roleID);
-				});
-				break;
-			case juniorEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(junior_roleID);
-				});
-				break;
-			case seniorEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(senior_roleID);
-				});
-				break;
-			case graduateEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(gradstudent_roleID);
-				});
-				break;
-			case himEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(hehim_roleID);
-				});
-				break;
-			case herEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(sheher_roleID);
-				});
-				break;
-			case theyEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(theythem_roleID);
-				});
-				break;
-			case otherEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(other_roleID);
-				});
-				break;
-			case gamedevEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(gamedev_roleID);
-				});
-				break;
-			case frontendEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(frontend_roleID);
-				});
-				break;
-			case backendEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(backend_roleID);
-				});
-				break;
-			case dataEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(datasci_roleID);
-				});
-				break;
-			case devOpsEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(devops_roleID);
-				});
-				break;
-			case redEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(redteam_roleID);
-				});
-				break;
-			case blueEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(blueteam_roleID);
-				});
-				break;
-			case networkEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(network_roleID);
-				});
-				break;
-			case aiEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(ai_roleID);
-				});
-				break;
-			case cloudEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(cloud_roleID);
-				});
-				break;
-			case threedEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(modeling_roleID);
-				});
-				break;
-			case graphicEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(design_roleID);
-				});
-				break;
-			case seEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(softeng_roleID);
-				});
-				break;
-			case serverEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(serveradmin_roleID);
-				});
-				break;
-			case embedEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(embedded_roleID);
-				});
-				break;
-			case forensicEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.add(forensic_roleID);
-				});
-				break;
-		}
+		message.guild.members.fetch(user.id).then((member) => {
+			member.roles.add(rolesMap.get(emoji.name));
+		});
 	}
 });
 
@@ -409,155 +290,9 @@ client.on("messageReactionRemove", async (reaction, user) => {
 		let message = reaction.message;
 		let emoji = reaction.emoji;
 
-		//Checking for removed reacted emojis, and unassigning accordingly
-		//More gross switch statements
-		switch (emoji.name) {
-			case studentEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(student_roleID);
-				});
-				break;
-			case facultyEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(faculty_roleID);
-				});
-				break;
-			case alumniEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(alumni_roleID);
-				});
-				break;
-			case guestEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(guest_roleID);
-				});
-				break;
-			case freshmanEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(freshman_roleID);
-				});
-				break;
-			case sophomoreEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(sophomore_roleID);
-				});
-				break;
-			case juniorEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(junior_roleID);
-				});
-				break;
-			case seniorEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(senior_roleID);
-				});
-				break;
-			case graduateEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(gradstudent_roleID);
-				});
-				break;
-			case himEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(hehim_roleID);
-				});
-				break;
-			case herEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(sheher_roleID);
-				});
-				break;
-			case theyEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(theythem_roleID);
-				});
-				break;
-			case otherEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(other_roleID);
-				});
-				break;
-			case gamedevEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(gamedev_roleID);
-				});
-				break;
-			case frontendEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(frontend_roleID);
-				});
-				break;
-			case backendEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(backend_roleID);
-				});
-				break;
-			case dataEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(datasci_roleID);
-				});
-				break;
-			case devOpsEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(devops_roleID);
-				});
-				break;
-			case redEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(redteam_roleID);
-				});
-				break;
-			case blueEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(blueteam_roleID);
-				});
-				break;
-			case networkEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(network_roleID);
-				});
-				break;
-			case aiEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(ai_roleID);
-				});
-				break;
-			case cloudEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(cloud_roleID);
-				});
-				break;
-			case threedEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(modeling_roleID);
-				});
-				break;
-			case graphicEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(design_roleID);
-				});
-				break;
-			case seEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(softeng_roleID);
-				});
-				break;
-			case serverEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(serveradmin_roleID);
-				});
-				break;
-			case embedEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(embedded_roleID);
-				});
-				break;
-			case forensicEmoji:
-				message.guild.members.fetch(user.id).then((member) => {
-					member.roles.remove(forensic_roleID);
-				});
-				break;
-		}
+		message.guild.members.fetch(user.id).then((member) => {
+			member.roles.remove(rolesMap.get(emoji.name));
+		});
 	}
 });
 
