@@ -17,50 +17,6 @@ const client = new Client({
 // Text channel ID that role commands will be issued in
 const roleChannel = "976249794982993920";
 
-// ID number for each role in the server.
-const president_roleID = "975921199743901716";
-const vicePresident_roleID = "975921252181098506";
-const officer_roleID = "975921128382021703";
-const eventsTeam_roleID = "975920858067533855";
-
-//Enrollment Status
-const member_roleID = "975920537073225789";
-const student_roleID = "975920815545659432";
-const faculty_roleID = "976860263150153778";
-const alumni_roleID = "976860671037833236";
-const guest_roleID = "976860704592265236";
-
-//Seniority
-const freshman_roleID = "976860744496865301";
-const sophomore_roleID = "976860936788922388";
-const junior_roleID = "976860965020790865";
-const senior_roleID = "976860987602907167";
-const gradstudent_roleID = "976861005978173521";
-
-//Pronouns
-const hehim_roleID = "976861030095413248";
-const sheher_roleID = "976861081387540551";
-const theythem_roleID = "976861102623305738";
-const other_roleID = "976861155081486336";
-
-//Interests
-const gamedev_roleID = "976861323625377842";
-const frontend_roleID = "976861323667333170";
-const backend_roleID = "976861486339199107";
-const datasci_roleID = "976861513526706196";
-const devops_roleID = "976861542047940638";
-const redteam_roleID = "976861574620925953";
-const blueteam_roleID = "976861663443693568";
-const network_roleID = "976861699921559582";
-const ai_roleID = "976861736269410314";
-const cloud_roleID = "976861783207837766";
-const modeling_roleID = "976861824228130927";
-const design_roleID = "976861855500869722";
-const softeng_roleID = "976861896437276743";
-const serveradmin_roleID = "976861932495704154";
-const embedded_roleID = "976861966947741696";
-const forensic_roleID = "976862011952623726";
-
 //enrollment status
 const studentEmoji = "💻";
 const facultyEmoji = "🍎";
