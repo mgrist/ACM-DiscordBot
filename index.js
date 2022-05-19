@@ -51,7 +51,7 @@ const frontendEmoji = "🦚";
 const embedEmoji = "🤢";
 const forensicEmoji = "🕵️‍♀️";
 
-//Trying to create a map to make the role setting easier and much smaller
+//Putting IDs into a map to consolidate the role selection
 const rolesMap = new Map([
 	[studentEmoji, "975920815545659432"],
 	[facultyEmoji, "976860263150153778"],
@@ -214,17 +214,6 @@ client.once("ready", async (c) => {
 
 // When client reacts to bot message, assign role
 client.on("messageReactionAdd", async (reaction, user) => {
-
-	// This was used to remove roles from the bot that couldn't be removed manually, I'd suggest we leave this here for future use
-	//
-	// let message = reaction.message;
-	// let emoji = reaction.emoji;
-	//
-	// if(user.bot){
-	// 	message.guild.members.fetch(user.id).then((member) => {
-	// 		member.roles.remove(student_roleID);
-	// 	})
-	// }
 
 	// If an acutal user is reacting, not a bot.
 	if ((!user.bot) && (reaction.message.channelId == roleChannel)) {
