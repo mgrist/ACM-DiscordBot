@@ -10,79 +10,49 @@ const client = new Client({
 		"GUILDS",
 		"GUILD_MESSAGES",
 		"DIRECT_MESSAGES",
-		"GUILD_MESSAGE_REACTIONS",
-	],
+		"GUILD_MESSAGE_REACTIONS"
+	]
 });
 
 // Text channel ID that role commands will be issued in
 const roleChannel = "976249794982993920";
 
-//enrollment status
-const studentEmoji = "💻";
-const facultyEmoji = "🍎";
-const alumniEmoji = "🎓";
-const guestEmoji = "👨‍🎤";
-// education status
-const freshmanEmoji = "1️⃣";
-const sophomoreEmoji = "2️⃣";
-const juniorEmoji = "3️⃣";
-const seniorEmoji = "4️⃣";
-const graduateEmoji = "5️⃣";
-// pronouns
-const himEmoji = "🧡";
-const herEmoji = "💜";
-const theyEmoji = "💚";
-const otherEmoji = "❤️";
-// interests
-const gamedevEmoji = "🕹";
-const backendEmoji = "🍺";
-const dataEmoji = "📊";
-const devOpsEmoji = "🃏";
-const redEmoji = "☢️";
-const blueEmoji = "🪤";
-const networkEmoji = "📡";
-const aiEmoji = "🤖";
-const cloudEmoji = "🌧";
-const threedEmoji = "🗿";
-const graphicEmoji = "🎨";
-const seEmoji = "🚿";
-const serverEmoji = "🔥";
-const frontendEmoji = "🦚";
-const embedEmoji = "🤢";
-const forensicEmoji = "🕵️‍♀️";
-
 //Putting IDs into a map to consolidate the role selection
-const rolesMap = new Map([
-	[studentEmoji, "975920815545659432"],
-	[facultyEmoji, "976860263150153778"],
-	[alumniEmoji, "976860671037833236"],
-	[guestEmoji, "976860704592265236"],
-	[freshmanEmoji, "976860744496865301"],
-	[sophomoreEmoji, "976860936788922388"],
-	[juniorEmoji, "976860965020790865"],
-	[seniorEmoji, "976860987602907167"],
-	[graduateEmoji, "976861005978173521"],
-	[himEmoji, "976861030095413248"],
-	[herEmoji, "976861081387540551"],
-	[theyEmoji, "976861102623305738"],
-	[otherEmoji, "976861155081486336"],
-	[gamedevEmoji, "976861323625377842"],
-	[frontendEmoji, "976861323667333170"],
-	[backendEmoji, "976861486339199107"],
-	[dataEmoji, "976861513526706196"],
-	[devOpsEmoji, "976861542047940638"],
-	[redEmoji, "976861574620925953"],
-	[blueEmoji, "976861663443693568"],
-	[networkEmoji, "976861699921559582"],
-	[aiEmoji, "976861736269410314"],
-	[cloudEmoji, "976861783207837766"],
-	[threedEmoji, "976861824228130927"],
-	[graphicEmoji, "976861855500869722"],
-	[seEmoji, "976861896437276743"],
-	[serverEmoji, "976861932495704154"],
-	[embedEmoji, "976861966947741696"],
-	[forensicEmoji, "976862011952623726"]
-]);
+let rolesArr = [
+	//enrollment status
+	{ emoji: "💻", id: "975920815545659432", roleName: "student" },
+	{ emoji: "🍎", id: "976860263150153778", roleName: "faculty" },
+	{ emoji: "🎓", id: "976860671037833236", roleName: "alumni" },
+	{ emoji: "👨‍🎤", id: "976860704592265236", roleName: "guest" },
+	// education status
+	{ emoji: "1️⃣", id: "976860744496865301", roleName: "freshman" },
+	{ emoji: "2️⃣", id: "976860936788922388", roleName: "sophomore" },
+	{ emoji: "3️⃣", id: "976860965020790865", roleName: "junior" },
+	{ emoji: "4️⃣", id: "976860987602907167", roleName: "senior" },
+	{ emoji: "5️⃣", id: "976861005978173521", roleName: "graduate" },
+	// pronouns
+	{ emoji: "🧡", id: "976861030095413248", roleName: "him" },
+	{ emoji: "💜", id: "976861081387540551", roleName: "her" },
+	{ emoji: "💚", id: "976861102623305738", roleName: "they" },
+	{ emoji: "❤️", id: "976861155081486336", roleName: "other" },
+	// interests
+	{ emoji: "🕹", id: "976861323625377842", roleName: "gamedev" },
+	{ emoji: "🦚", id: "976861323667333170", roleName: "frontend" },
+	{ emoji: "🍺", id: "976861486339199107", roleName: "backend" },
+	{ emoji: "📊", id: "976861513526706196", roleName: "data" },
+	{ emoji: "🃏", id: "976861542047940638", roleName: "devops" },
+	{ emoji: "☢️", id: "976861574620925953", roleName: "red" },
+	{ emoji: "🪤", id: "976861663443693568", roleName: "blue" },
+	{ emoji: "📡", id: "976861699921559582", roleName: "network" },
+	{ emoji: "🤖", id: "976861736269410314", roleName: "ai" },
+	{ emoji: "🌧", id: "976861783207837766", roleName: "cloud" },
+	{ emoji: "🗿", id: "976861824228130927", roleName: "threed" },
+	{ emoji: "🎨", id: "976861855500869722", roleName: "graphic" },
+	{ emoji: "🚿", id: "976861896437276743", roleName: "software" },
+	{ emoji: "🔥", id: "976861932495704154", roleName: "server" },
+	{ emoji: "🤢", id: "976861966947741696", roleName: "embed" },
+	{ emoji: "🕵️‍♀️", id: "976862011952623726", roleName: "forensic" }
+];
 
 // When the client is ready, run this code (only once)
 client.once("ready", async (c) => {
@@ -98,131 +68,133 @@ client.once("ready", async (c) => {
 	channel
 		.send(
 			"__**React to give yourself roles:**__\n\n" +
-				"__Enrollment Status__\n\n" +
-				studentEmoji +
+				"**__Enrollment Status__**\n\n" +
+				rolesArr[0].emoji +
 				": `Student`\n\n" +
-				facultyEmoji +
+				rolesArr[1].emoji +
 				": `Faculty`\n\n" +
-				alumniEmoji +
+				rolesArr[2].emoji +
 				": `Alumni`\n\n" +
-				guestEmoji +
+				rolesArr[3].emoji +
 				": `Guest`\n\n"
 		)
 		.then((sent) => {
-			sent.react(studentEmoji);
-			sent.react(facultyEmoji);
-			sent.react(alumniEmoji);
-			sent.react(guestEmoji);
+			sent.react(rolesArr[0].emoji);
+			sent.react(rolesArr[1].emoji);
+			sent.react(rolesArr[2].emoji);
+			sent.react(rolesArr[3].emoji);
 		});
 
 	channel
 		.send(
-			"__Seniority__\n\n" +
-				freshmanEmoji +
+			"**__Seniority__**\n\n" +
+				rolesArr[4].emoji +
 				": `Freshman`\n\n" +
-				sophomoreEmoji +
+				rolesArr[5].emoji +
 				": `Sophomore`\n\n" +
-				juniorEmoji +
+				rolesArr[6].emoji +
 				": `Junior`\n\n" +
-				seniorEmoji +
+				rolesArr[7].emoji +
 				": `Senior`\n\n" +
-				graduateEmoji +
+				rolesArr[8].emoji +
 				": `Graduate Student`\n\n"
 		)
 		.then((sent) => {
-			sent.react(freshmanEmoji);
-			sent.react(sophomoreEmoji);
-			sent.react(juniorEmoji);
-			sent.react(seniorEmoji);
-			sent.react(graduateEmoji);
+			sent.react(rolesArr[4].emoji);
+			sent.react(rolesArr[5].emoji);
+			sent.react(rolesArr[6].emoji);
+			sent.react(rolesArr[7].emoji);
+			sent.react(rolesArr[8].emoji);
 		});
 
 	channel
 		.send(
-			"\n\n__Pronouns__\n\n" +
-				himEmoji +
+			"\n\n**__Pronouns__**\n\n" +
+				rolesArr[9].emoji +
 				": `He/Him`\n\n" +
-				herEmoji +
+				rolesArr[10].emoji +
 				": `She/Her`\n\n" +
-				theyEmoji +
+				rolesArr[11].emoji +
 				": `They/Them`\n\n" +
-				otherEmoji +
+				rolesArr[12].emoji +
 				": `Other`\n\n"
 		)
 		.then((sent) => {
-			sent.react(himEmoji);
-			sent.react(herEmoji);
-			sent.react(theyEmoji);
-			sent.react(otherEmoji);
+			sent.react(rolesArr[9].emoji);
+			sent.react(rolesArr[10].emoji);
+			sent.react(rolesArr[11].emoji);
+			sent.react(rolesArr[12].emoji);
 		});
 
 	channel
 		.send(
-			"__Interests__\n\n" +
-				gamedevEmoji +
+			"**__Interests__**\n\n" +
+				rolesArr[13].emoji +
 				": `Game Dev`\n\n" +
-				frontendEmoji +
+				rolesArr[14].emoji +
 				": `Frontend Dev`\n\n" +
-				backendEmoji +
+				rolesArr[15].emoji +
 				": `Backend Dev`\n\n" +
-				dataEmoji +
+				rolesArr[16].emoji +
 				": `Data Science`\n\n" +
-				devOpsEmoji +
+				rolesArr[17].emoji +
 				": `DevOps`\n\n" +
-				redEmoji +
+				rolesArr[18].emoji +
 				": `CyberSec - Red Team`\n\n" +
-				blueEmoji +
+				rolesArr[19].emoji +
 				": `CyberSec - Blue Team`\n\n" +
-				networkEmoji +
+				rolesArr[20].emoji +
 				": `Networking`\n\n" +
-				aiEmoji +
+				rolesArr[21].emoji +
 				": `Artificial Intelligence`\n\n" +
-				cloudEmoji +
+				rolesArr[22].emoji +
 				": `Cloud Computing`\n\n" +
-				threedEmoji +
+				rolesArr[23].emoji +
 				": `3D Modeling`\n\n" +
-				graphicEmoji +
+				rolesArr[24].emoji +
 				": `Graphic Design`\n\n" +
-				seEmoji +
+				rolesArr[25].emoji +
 				": `Software Engineering`\n\n" +
-				serverEmoji +
+				rolesArr[26].emoji +
 				": `Server Administration`\n\n" +
-				embedEmoji +
+				rolesArr[27].emoji +
 				": `Embedded Development`\n\n" +
-				forensicEmoji +
+				rolesArr[28].emoji +
 				": `Computer Forensics`\n\n"
 		)
 		.then((sent) => {
-			sent.react(gamedevEmoji);
-			sent.react(frontendEmoji);
-			sent.react(backendEmoji);
-			sent.react(dataEmoji);
-			sent.react(devOpsEmoji);
-			sent.react(redEmoji);
-			sent.react(blueEmoji);
-			sent.react(networkEmoji);
-			sent.react(aiEmoji);
-			sent.react(cloudEmoji);
-			sent.react(threedEmoji);
-			sent.react(graphicEmoji);
-			sent.react(seEmoji);
-			sent.react(serverEmoji);
-			sent.react(embedEmoji);
-			sent.react(forensicEmoji);
+			sent.react(rolesArr[13].emoji);
+			sent.react(rolesArr[14].emoji);
+			sent.react(rolesArr[15].emoji);
+			sent.react(rolesArr[16].emoji);
+			sent.react(rolesArr[17].emoji);
+			sent.react(rolesArr[18].emoji);
+			sent.react(rolesArr[19].emoji);
+			sent.react(rolesArr[20].emoji);
+			sent.react(rolesArr[21].emoji);
+			sent.react(rolesArr[22].emoji);
+			sent.react(rolesArr[23].emoji);
+			sent.react(rolesArr[24].emoji);
+			sent.react(rolesArr[25].emoji);
+			sent.react(rolesArr[26].emoji);
+			sent.react(rolesArr[27].emoji);
+			sent.react(rolesArr[28].emoji);
 		});
 });
 
 // When client reacts to bot message, assign role
 client.on("messageReactionAdd", async (reaction, user) => {
-
 	// If an acutal user is reacting, not a bot.
-	if ((!user.bot) && (reaction.message.channelId == roleChannel)) {
-
+	if (!user.bot && reaction.message.channelId == roleChannel) {
 		let message = reaction.message;
 		let emoji = reaction.emoji;
 
+		// console.log(rolesArr.findIndex((item) => item.emoji === emoji.name));
+		// find the index of a role/emoji
+		const indexRole = rolesArr.findIndex((item) => item.emoji === emoji.name);
+
 		message.guild.members.fetch(user.id).then((member) => {
-			member.roles.add(rolesMap.get(emoji.name));
+			member.roles.add(rolesArr[indexRole].id);
 		});
 	}
 });
@@ -230,13 +202,16 @@ client.on("messageReactionAdd", async (reaction, user) => {
 // When client removes reaction to bot message, unassign role
 client.on("messageReactionRemove", async (reaction, user) => {
 	// If an acutal user is reacting, not a bot.
-	if ((!user.bot) && (reaction.message.channelId == roleChannel)) {
+	if (!user.bot && reaction.message.channelId == roleChannel) {
 		//Storing message and emoji for reference
 		let message = reaction.message;
 		let emoji = reaction.emoji;
 
+		// find the index of a role/emoji
+		const indexRole = rolesArr.findIndex((item) => item.emoji === emoji.name);
+
 		message.guild.members.fetch(user.id).then((member) => {
-			member.roles.remove(rolesMap.get(emoji.name));
+			member.roles.remove(rolesArr[indexRole].id);
 		});
 	}
 });
