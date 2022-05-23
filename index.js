@@ -1,7 +1,7 @@
 // Require the necessary discord.js classes
 const { Client, Intents, Role, RoleManager } = require("discord.js");
 // discord bot token stored in config file & role channel ID bot will operate in
-const { token, roleChannel } = require("./config.json");
+const { token } = require("./config.json");
 
 const { outputRoleMessage } = require("./startUp.js");
 const { giveRoleOnReaction } = require("./giveRole.js");
