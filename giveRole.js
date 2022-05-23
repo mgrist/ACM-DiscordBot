@@ -8,7 +8,9 @@ const giveRoleOnReaction = async (reaction, user, rolesArr) => {
 
 		// console.log(rolesArr.findIndex((item) => item.emoji === emoji.name));
 		// find the index of a role/emoji
-		const indexRole = rolesArr.findIndex((item) => item.emoji === emoji.name);
+		const indexRole = rolesArr.findIndex(
+			(item) => item.emoji === emoji.name
+		);
 
 		message.guild.members.fetch(user.id).then((member) => {
 			member.roles.add(rolesArr[indexRole].id);
@@ -17,5 +19,5 @@ const giveRoleOnReaction = async (reaction, user, rolesArr) => {
 };
 
 module.exports = {
-	giveRoleOnReaction
+	giveRoleOnReaction,
 };

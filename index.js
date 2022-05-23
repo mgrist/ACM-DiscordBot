@@ -1,5 +1,5 @@
 // Require the necessary discord.js classes
-const { Client, Intents, Role, RoleManager } = require("discord.js");
+const { Client, Intents } = require("discord.js");
 // discord bot token stored in config file & role channel ID bot will operate in
 const { token } = require("./config.json");
 
@@ -14,8 +14,8 @@ const client = new Client({
 		"GUILDS",
 		"GUILD_MESSAGES",
 		"DIRECT_MESSAGES",
-		"GUILD_MESSAGE_REACTIONS"
-	]
+		"GUILD_MESSAGE_REACTIONS",
+	],
 });
 
 //Putting IDs into a map to consolidate the role selection
@@ -52,12 +52,13 @@ let rolesArr = [
 	{ emoji: "🚿", id: "976861896437276743", roleName: "software" },
 	{ emoji: "🔥", id: "976861932495704154", roleName: "server" },
 	{ emoji: "🤢", id: "976861966947741696", roleName: "embed" },
-	{ emoji: "🕵️‍♀️", id: "976862011952623726", roleName: "forensic" }
+	{ emoji: "🕵️‍♀️", id: "976862011952623726", roleName: "forensic" },
 ];
 
 // When the client is ready, run this code (only once)
 client.once("ready", async (c) => {
 	//Successful logon
+	// eslint-disable-next-line no-console
 	console.log(`Ready! Logged in as ${c.user.tag}`);
 	// outputs the initial message in the role channel with respective reactions
 	outputRoleMessage(client, rolesArr);

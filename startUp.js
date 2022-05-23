@@ -127,5 +127,5 @@ const outputRoleMessage = async (client, rolesArr) => {
 };
 
 module.exports = {
-	outputRoleMessage
+	outputRoleMessage,
 };

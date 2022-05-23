@@ -8,7 +8,9 @@ const removeRoleOnReaction = async (reaction, user, rolesArr) => {
 		let emoji = reaction.emoji;
 
 		// find the index of a role/emoji
-		const indexRole = rolesArr.findIndex((item) => item.emoji === emoji.name);
+		const indexRole = rolesArr.findIndex(
+			(item) => item.emoji === emoji.name
+		);
 
 		message.guild.members.fetch(user.id).then((member) => {
 			member.roles.remove(rolesArr[indexRole].id);
@@ -17,5 +19,5 @@ const removeRoleOnReaction = async (reaction, user, rolesArr) => {
 };
 
 module.exports = {
-	removeRoleOnReaction
+	removeRoleOnReaction,
 };
