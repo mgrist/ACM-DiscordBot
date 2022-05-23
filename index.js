@@ -35,7 +35,7 @@ let rolesArr = [
 	{ emoji: "🧡", id: "976861030095413248", roleName: "him" },
 	{ emoji: "💜", id: "976861081387540551", roleName: "her" },
 	{ emoji: "💚", id: "976861102623305738", roleName: "they" },
-	{ emoji: "❤️", id: "976861155081486336", roleName: "other" },
+	{ emoji: "❤️", id: "976861155081486336", roleName: "custom" },
 	// interests
 	{ emoji: "🕹", id: "976861323625377842", roleName: "gamedev" },
 	{ emoji: "🦚", id: "976861323667333170", roleName: "frontend" },
@@ -67,7 +67,7 @@ client.once("ready", async (c) => {
 // When client reacts to bot message, assign role
 client.on("messageReactionAdd", async (reaction, user) => {
 	// gives user roles based on reaction
-	giveRoleOnReaction(reaction, user, rolesArr);
+	giveRoleOnReaction(reaction, user, rolesArr, client);
 });
 
 // When client removes reaction to bot message, unassign role
