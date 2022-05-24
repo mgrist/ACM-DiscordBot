@@ -3,9 +3,9 @@ const { Client, Intents } = require("discord.js");
 // discord bot token stored in config file & role channel ID bot will operate in
 const { token } = require("./config.json");
 
-const { outputRoleMessage } = require("./startUp.js");
-const { giveRoleOnReaction } = require("./giveRole.js");
-const { removeRoleOnReaction } = require("./removeRole.js");
+const { outputRoleMessage } = require("./src/startUp.js");
+const { giveRoleOnReaction } = require("./src/giveRole.js");
+const { removeRoleOnReaction } = require("./src/removeRole.js");
 
 // Create a new client instance
 const client = new Client({

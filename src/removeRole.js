@@ -1,4 +1,4 @@
-const { roleChannel } = require("./config.json");
+const { roleChannel } = require("../config.json");
 
 const removeRoleOnReaction = async (reaction, user, rolesArr) => {
 	// If an acutal user is reacting, not a bot.

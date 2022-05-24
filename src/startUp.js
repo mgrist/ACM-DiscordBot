@@ -1,4 +1,4 @@
-const { roleChannel } = require("./config.json");
+const { roleChannel } = require("../config.json");
 
 // outputs the messages containing the roles and their corresponding emojis
 // reacts to each message with the possible role emojis

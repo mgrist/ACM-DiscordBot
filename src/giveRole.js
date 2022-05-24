@@ -3,7 +3,7 @@ const {
 	generalChannel,
 	prefix,
 	adminList,
-} = require("./config.json");
+} = require("../config.json");
 
 const giveRoleOnReaction = async (reaction, user, rolesArr, client) => {
 	// If an acutal user is reacting, not a bot.
@@ -58,21 +58,24 @@ async function sendRoleRequest(id, client) {
 			// grab the custom role name that the user entered
 			let roleName = parseRoleName(message);
 
-			// send all mods a dm to give custom role to user
-			for (const adminID of adminList) {
-				const admin = await client.users.fetch(adminID);
-				await admin.send(
-					message.author.username +
-						"#" +
-						message.author.discriminator +
-						" has requested the role `" +
-						roleName +
-						"`"
-				);
-			}
+			// if a valid role name was provided, continue with request
+			if (roleName) {
+				// send all mods a dm to give custom role to user
+				for (const adminID of adminList) {
+					const admin = await client.users.fetch(adminID);
+					await admin.send(
+						message.author.username +
+							"#" +
+							message.author.discriminator +
+							" has requested the role `" +
+							roleName +
+							"`"
+					);
+				}
 
-			// verify that the role request is submitted
-			message.author.send("You're role request has been submitted.");
+				// verify that the role request is submitted
+				message.author.send("You're role request has been submitted.");
+			}
 		}
 	});
 }
@@ -91,9 +94,11 @@ function parseRoleName(message) {
 		message.author.send(
 			"Invalid command. Make sure to use !role and provide an argument."
 		);
+
+		return null;
 	}
 }
 
 module.exports = {
-	giveRoleOnReaction,
+	giveRoleOnReaction
 };
