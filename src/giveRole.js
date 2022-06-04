@@ -11,21 +11,27 @@ const giveRoleOnReaction = async (reaction, user, rolesArr, client) => {
 		let message = reaction.message;
 		let emoji = reaction.emoji;
 
-		// console.log(rolesArr.findIndex((item) => item.emoji === emoji.name));
 		// find the index of a role/emoji
 		const indexRole = rolesArr.findIndex(
 			(item) => item.emoji === emoji.name
 		);
-
-		// if user reacts with custom pronoun role, send a message to a mod
-		if (rolesArr[indexRole].roleName == "custom") {
-			sendRoleRequest(user.id, client);
+		
+		// checks if the reaction was a valid role reaction, if not remove reaction
+		if (indexRole != -1) {
+			// if user reacts with custom pronoun role, send a message to a mod
+			if (rolesArr[indexRole].roleName == "custom") {
+				sendRoleRequest(user.id, client);
+			}
+			// otherwise, give the user their requested role, no checks needed
+			else {
+				message.guild.members.fetch(user.id).then((member) => {
+					member.roles.add(rolesArr[indexRole].id);
+				});
+			}
 		}
-		// otherwise, give the user their requested role, no checks needed
+		// if not a valid reaction, remove reaction to prevent clutter/onfusion
 		else {
-			message.guild.members.fetch(user.id).then((member) => {
-				member.roles.add(rolesArr[indexRole].id);
-			});
+			message.reactions.cache.get(emoji.name).remove()
 		}
 	}
 };
@@ -80,6 +86,8 @@ async function sendRoleRequest(id, client) {
 	});
 }
 
+/* parses the command given, making sure it begins with correct prefix, *
+*  the command given is "role", and extracting the custom role name    */
 function parseRoleName(message) {
 	// if message does not start with ! prefix, or author is a bot, ignore.
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
