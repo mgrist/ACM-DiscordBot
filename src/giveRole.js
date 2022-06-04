@@ -15,7 +15,7 @@ const giveRoleOnReaction = async (reaction, user, rolesArr, client) => {
 		const indexRole = rolesArr.findIndex(
 			(item) => item.emoji === emoji.name
 		);
-		
+
 		// checks if the reaction was a valid role reaction, if not remove reaction
 		if (indexRole != -1) {
 			// if user reacts with custom pronoun role, send a message to a mod
@@ -31,7 +31,7 @@ const giveRoleOnReaction = async (reaction, user, rolesArr, client) => {
 		}
 		// if not a valid reaction, remove reaction to prevent clutter/onfusion
 		else {
-			message.reactions.cache.get(emoji.name).remove()
+			message.reactions.cache.get(emoji.name).remove();
 		}
 	}
 };
@@ -87,7 +87,7 @@ async function sendRoleRequest(id, client) {
 }
 
 /* parses the command given, making sure it begins with correct prefix, *
-*  the command given is "role", and extracting the custom role name    */
+ *  the command given is "role", and extracting the custom role name    */
 function parseRoleName(message) {
 	// if message does not start with ! prefix, or author is a bot, ignore.
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -108,5 +108,5 @@ function parseRoleName(message) {
 }
 
 module.exports = {
-	giveRoleOnReaction
+	giveRoleOnReaction,
 };

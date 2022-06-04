@@ -12,11 +12,12 @@ const removeRoleOnReaction = async (reaction, user, rolesArr) => {
 			(item) => item.emoji === emoji.name
 		);
 
-		message.guild.members.fetch(user.id)
-		.catcj((error) => console.log(error))
-		.then((member) => {
-			member.roles.remove(rolesArr[indexRole].id);
-		});
+		message.guild.members
+			.fetch(user.id)
+			.catcj((error) => console.log(error))
+			.then((member) => {
+				member.roles.remove(rolesArr[indexRole].id);
+			});
 	}
 };
 
