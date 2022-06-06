@@ -6,6 +6,7 @@ const { token } = require("./config.json");
 const { outputRoleMessage } = require("./src/startUp.js");
 const { giveRoleOnReaction } = require("./src/giveRole.js");
 const { removeRoleOnReaction } = require("./src/removeRole.js");
+const { connectDatabase } = require("./database/mongo.js");
 
 // Create a new client instance
 const client = new Client({
@@ -21,6 +22,7 @@ const client = new Client({
 //Putting IDs into a map to consolidate the role selection
 let rolesArr = [
 	//enrollment status
+	{ emoji: "🌐", id: "975920537073225789", roleName: "member" },
 	{ emoji: "💻", id: "975920815545659432", roleName: "student" },
 	{ emoji: "🍎", id: "976860263150153778", roleName: "faculty" },
 	{ emoji: "🎓", id: "976860671037833236", roleName: "alumni" },
@@ -60,6 +62,10 @@ client.once("ready", async (c) => {
 	//Successful logon
 	// eslint-disable-next-line no-console
 	console.log(`Ready! Logged in as ${c.user.tag}`);
+
+	//connect to mongodb database
+	connectDatabase();
+	
 	// outputs the initial message in the role channel with respective reactions
 	outputRoleMessage(client, rolesArr);
 });
