@@ -65,7 +65,7 @@ client.once("ready", async (c) => {
 
 	//connect to mongodb database
 	connectDatabase();
-	
+
 	// outputs the initial message in the role channel with respective reactions
 	outputRoleMessage(client, rolesArr);
 });
