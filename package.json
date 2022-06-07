@@ -21,6 +21,7 @@
 	},
 	"homepage": "https://github.com/mgrist/ACM-DiscordBot#readme",
 	"dependencies": {
+		"axios": "^0.27.2",
 		"discord.js": "^13.7.0",
 		"eslint-config-prettier": "^8.5.0",
 		"mongoose": "^6.3.5",
