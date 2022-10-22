@@ -14,7 +14,7 @@ const removeRoleOnReaction = async (reaction, user, rolesArr) => {
 
 		message.guild.members
 			.fetch(user.id)
-			.catcj((error) => console.log(error))
+			.catch((error) => console.log(error))
 			.then((member) => {
 				member.roles.remove(rolesArr[indexRole].id);
 			});
